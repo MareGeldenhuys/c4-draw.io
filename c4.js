@@ -162,7 +162,7 @@ Draw.loadPlugin(function (ui) {
         c4SoftwareSystem.setAttribute('placeholders', '1');
         c4SoftwareSystem.setAttribute('c4Name', 'name');
         c4SoftwareSystem.setAttribute('c4Type', 'SoftwareSystem');
-        c4SoftwareSystem.setAttribute('c4Description', 'Beschreibung');
+        c4SoftwareSystem.setAttribute('c4Description', 'a Software System');
         c4SoftwareSystem.c4 = this;
         return c4SoftwareSystem;
     };
@@ -198,7 +198,7 @@ Draw.loadPlugin(function (ui) {
         c4Component.setAttribute('c4Name', 'name');
         c4Component.setAttribute('c4Type', 'Component');
         c4Component.setAttribute('c4Technology', 'technology');
-        c4Component.setAttribute('c4Description', 'Beschreibung');
+        c4Component.setAttribute('c4Description', 'a Component');
         c4Component.c4 = this;
         return c4Component;
     };

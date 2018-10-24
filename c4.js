@@ -273,7 +273,7 @@ Draw.loadPlugin(function (ui) {
         c4MessageBus.c4 = this;
         return c4MessageBus;
     };
-    c4Utils.registCodec(c4MessageBus);
+    c4Utils.registCodec(C4MessageBus);
 
     C4Relationship = function () {
     };

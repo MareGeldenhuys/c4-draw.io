@@ -256,6 +256,25 @@ Draw.loadPlugin(function (ui) {
     };
     c4Utils.registCodec(C4Database);
 
+    C4MessageBus = function () {
+    };
+    C4MessageBus.prototype.handler = c4StateHandler;
+    C4MessageBus.prototype.create = function () {
+        var c4MessageBusGeomatry = new mxGeometry(0, 70, 160, 140);
+        c4MessageBusGeomatry.rotate(90);
+        var c4MessageBus = new mxCell('', c4MessageBusGeomatry, 'shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#dae8fc;fontSize=12;fontColor=#000000;align=center;strokeColor=#6c8ebf;');
+        c4MessageBus.setVertex(true);
+        c4MessageBus.setValue(mxUtils.createXmlDocument().createElement('object'));
+        c4MessageBus.setAttribute('label', '<span>MessageBus</span><div>[Container:&nbsp;technology]</div><div><br></div><div>a MessageBus</div>');
+        c4MessageBus.setAttribute('placeholders', '1');
+        c4MessageBus.setAttribute('c4Type', 'MessageBus');
+        c4MessageBus.setAttribute('c4Technology', 'technology');
+        c4MessageBus.setAttribute('c4Description', 'a MessageBus');
+        c4MessageBus.c4 = this;
+        return c4MessageBus;
+    };
+    c4Utils.registCodec(c4MessageBus);
+
     C4Relationship = function () {
     };
     C4Relationship.prototype.handler = c4StateHandler;
@@ -278,7 +297,7 @@ Draw.loadPlugin(function (ui) {
 
     // Adds custom sidebar entry
     ui.sidebar.addPalette(sidebar_id, sidebar_title, true, function (content) {
-        var verticies = [C4Person, C4SoftwareSystem, C4Container, C4Component, C4ExecutionEnvironment, C4DeploymentNode, C4Database];
+        var verticies = [C4Person, C4SoftwareSystem, C4Container, C4Component, C4ExecutionEnvironment, C4DeploymentNode, C4Database, C4MessageBus];
         for (var i in verticies) {
             var cell = verticies[i].prototype.create();
             content.appendChild(ui.sidebar.createVertexTemplateFromCells([cell], cell.geometry.width, cell.geometry.height, cell.label));
@@ -395,6 +414,7 @@ Draw.loadPlugin(function (ui) {
                     firstInputField = getIndexOfC4Type('c4Step');
                     break;
                 case 'Database':
+                case 'MessageBus':
                     firstInputField = getIndexOfC4Type('c4Technology');
                     break;
             }
@@ -476,6 +496,9 @@ Draw.loadPlugin(function (ui) {
                             case 'Database':
                                 texts[labelIndex].value = '<span>Database</span><div>[Container:&nbsp;' + c4Technology + ']</div><div><br></div><div>' + c4Description + '</div>';
                                 break;
+                            case 'MessageBus':
+                                texts[labelIndex].value = '<span>MessageBus</span><div>[Container:&nbsp;' + c4Technology + ']</div><div><br></div><div>' + c4Description + '</div>';
+                                break;                                
                         }
                     }
                 }();
